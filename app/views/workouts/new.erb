@@ -1,0 +1,14 @@
+<h1>Lets make a Workout</h1>
+<p><%=@error%></p>
+<form action="/workouts" method="post">
+
+<label>Body Part</label>
+<input type="text" name='body_part'>
+<label>Time</label>
+<input type="integer" name='time'>
+<label>Description</label>
+<textarea type="text" name='desc'></textarea>
+<input type="submit">Add Workout</input>
+
+
+</form>

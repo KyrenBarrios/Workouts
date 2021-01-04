@@ -1,0 +1,10 @@
+<h1>What area are you trying to work out?</h1>
+<a href="workouts/new">Make a Workout</a>
+<% @workouts.each do |workout| %>
+<h2><a href="/workouts/<%= workout.id %>"><%= workout.body_part %></a></h2>
+<a href="/workouts/<%= workout.id%>/edit">Edit</a>
+
+<% end %>
+
+
+

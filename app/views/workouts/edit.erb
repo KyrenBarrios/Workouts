@@ -1,0 +1,19 @@
+<h1>Edit <%=@workout.body_part%> Workout </h1>
+<p><%= @error %></p>
+<form action="/workouts/<%=@workout.id%>" method="post">
+<input type="hidden" name="_method" value="patch">
+<label>Body Part</label>
+<input type="text" name="workout[body_part]" value="<%= @workout.body_part %>">
+<label>Time</label>
+<input type="integer" name="workout[time]" value="<%= @workout.time%>">
+<label>Description</label>
+<textarea name="workout[desc]"><%= @workout.desc%></textarea>
+<button type="submit">Change Workout</button>
+
+
+</form>
+<form action="/workouts/<%= @workout.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit" > Delete Workout</button>
+
+</form>
