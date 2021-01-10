@@ -3,6 +3,7 @@ class WorkoutsController < ApplicationController
 
 
 #CREATE
+
     #New(Will Render a form to display the form)
     #GET request to '/workouts/new'
     get '/workouts/new' do 
@@ -17,7 +18,7 @@ class WorkoutsController < ApplicationController
     # POST request to '/workouts
 
 post '/workouts' do 
-    workout = Workout.new(params)
+    workout = current_user.workouts.build(params)
     if !workout.body_part.empty? && !workout.desc.empty? && !workout.desc.empty?
         workout.save
         redirect '/workouts'
@@ -31,17 +32,18 @@ end
 
 
 #READ
+
     #Index(shows all workouts)
     # GET request to '/workouts'
     get '/workouts' do
         
-        #if logged_in?
+        if logged_in?
             @workouts = Workout.all.reverse
             erb :'workouts/index'
              
-        #else
-         #   redirect '/login'
-        #end
+        else
+            redirect '/login'
+        end
 
     end
 
@@ -50,8 +52,13 @@ end
 
     get '/workouts/:id' do 
         if logged_in?
-        @workout = Workout.find(params[:id])
-        erb :'workouts/show'
+        @workout = Workout.find_by(id: params[:id])
+          if @workout
+            erb :'workouts/show'
+          else 
+            redirect '/workouts'
+          end
+
        else
         redirect '/login'
        end
@@ -60,6 +67,7 @@ end
 
 
 #UPDATE
+
     #Edit(to display the form)
     #GET request to '/workouts/:id/edit'
     get '/workouts/:id/edit' do
@@ -73,7 +81,7 @@ end
     end
 
 
-    #Update
+    #Update(Updates the existing data based on the id)
     #PATCH request to '/workouts/:id'
     patch '/workouts/:id' do 
         @workout = Workout.find(params[:id])

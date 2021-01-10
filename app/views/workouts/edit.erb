@@ -14,6 +14,8 @@
 </form>
 <form action="/workouts/<%= @workout.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
+  <% if @workout.user == current_user %> 
   <button type="submit" > Delete Workout</button>
+  <% end %>
 
 </form>
