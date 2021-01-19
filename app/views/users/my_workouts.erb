@@ -1,0 +1,5 @@
+<h1>My Workouts</h1>
+<% @workouts.each do |workout| %>
+<% if current_user == workout.user %>
+<%= workout %>
+<%end%> 

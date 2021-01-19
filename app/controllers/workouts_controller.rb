@@ -47,6 +47,18 @@ end
 
     end
 
+    
+    #My_Workouts 
+    
+    get '/users/my_workouts' do
+        
+        
+        erb :'users/my_workouts'
+        
+        
+end 
+
+
     #Show(One particular workout)
     # GET request to '/workouts/:id'
 
@@ -82,7 +94,7 @@ end
 
 
     #Update(Updates the existing data based on the id)
-    #PATCH request to '/workouts/:id'
+    #POST/PATCH request to '/workouts/:id'
     patch '/workouts/:id' do 
         @workout = Workout.find(params[:id])
         if !params["workout"]["body_part"].empty? && !params["workout"]["time"].empty? && !params["workout"]["desc"].empty?
@@ -97,9 +109,11 @@ end
     end 
 
 
+
+
 #DESTROY
     #Delete
-    #POST request to '/workouts/:id'
+    #POST/PATCH request to '/workouts/:id'
     delete '/workouts/:id' do
         workout = Workout.find(params[:id])
         workout.destroy
