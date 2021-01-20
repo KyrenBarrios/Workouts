@@ -52,11 +52,12 @@ end
     
     get '/users/my_workouts' do
         
-        
+        @workouts = Workout.all
         erb :'users/my_workouts'
         
-        
-end 
+    
+    end 
+
 
 
     #Show(One particular workout)

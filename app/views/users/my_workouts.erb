@@ -1,5 +1,6 @@
 <h1>My Workouts</h1>
 <% @workouts.each do |workout| %>
 <% if current_user == workout.user %>
-<%= workout %>
-<%end%> 
+<h2><a href="/workouts/<%= workout.id %>"><%= workout.body_part %></a></h2>
+   <% end %>
+   <% end %>
